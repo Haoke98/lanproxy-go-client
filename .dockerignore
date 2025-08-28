@@ -1,0 +1,39 @@
+# Git相关文件
+.git
+.gitignore
+
+# IDE相关文件
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 构建产物
+client_*
+*.tar.gz
+*.exe
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Docker相关
+Dockerfile*
+.dockerignore
+
+# CI/CD相关
+.github/
+
+# 文档
+README.md
+
+# 构建脚本（可选，如果不需要在容器中使用）
+build-release.sh

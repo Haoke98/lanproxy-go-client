@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  lanproxy-client:
+    build: .
+    image: lanproxy-client:latest
+    container_name: lanproxy-client
+    restart: unless-stopped
+    # 环境变量方式配置（可选）
+    environment:
+      - CLIENT_KEY=${CLIENT_KEY:-your_client_key_here}
+      - SERVER_HOST=${SERVER_HOST:-your_server_host_here}
+      - SERVER_PORT=${SERVER_PORT:-4900}
+      - ENABLE_SSL=${ENABLE_SSL:-false}
+      - CERT_PATH=${CERT_PATH:-}
+    # 命令行参数方式配置（推荐）
+    command: [
+      "-k", "${CLIENT_KEY:-your_client_key_here}",
+      "-s", "${SERVER_HOST:-your_server_host_here}", 
+      "-p", "${SERVER_PORT:-4900}",
+      "--ssl", "${ENABLE_SSL:-false}"
+    ]
+    # 如果需要使用SSL证书文件，取消注释以下行
+    # volumes:
+    #   - ./certs:/app/certs:ro
+    # 网络模式（如果需要访问宿主机服务）
+    # network_mode: "host"
+    
+    # 健康检查（可选）
+    healthcheck:
+      test: ["CMD", "ps", "aux", "|", "grep", "lanproxy-client"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
