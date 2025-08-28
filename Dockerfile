@@ -4,8 +4,9 @@ FROM golang:1.19-alpine AS builder
 # 设置工作目录
 WORKDIR /app
 
-# 安装git（用于获取依赖）
-RUN apk add --no-cache git
+# 配置Alpine镜像源并安装git（用于获取依赖）
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+    apk add --no-cache git
 
 # 复制源代码
 COPY . .
@@ -23,8 +24,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o lanproxy-client .
 # 使用轻量级的alpine镜像作为运行环境
 FROM alpine:latest
 
-# 安装ca-certificates（用于HTTPS连接）
-RUN apk --no-cache add ca-certificates
+# 配置Alpine镜像源并安装ca-certificates（用于HTTPS连接）
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+    apk --no-cache add ca-certificates
 
 # 创建非root用户
 RUN addgroup -g 1001 -S lanproxy && \
