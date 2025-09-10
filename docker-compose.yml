@@ -8,17 +8,17 @@ services:
     restart: unless-stopped
     # 环境变量方式配置（可选）
     environment:
-      - CLIENT_KEY=${CLIENT_KEY:-your_client_key_here}
-      - SERVER_HOST=${SERVER_HOST:-your_server_host_here}
-      - SERVER_PORT=${SERVER_PORT:-4900}
-      - ENABLE_SSL=${ENABLE_SSL:-false}
+      - CLIENT_KEY=${CLIENT_KEY:-1716eb229b6f4d4f8ea755ec3cb7416f}
+      - SERVER_HOST=${SERVER_HOST:-218.31.113.195}
+      - SERVER_PORT=${SERVER_PORT:-9493}
+      - ENABLE_SSL=${ENABLE_SSL:-true}
       - CERT_PATH=${CERT_PATH:-}
     # 命令行参数方式配置（推荐）
     command: [
-      "-k", "${CLIENT_KEY:-your_client_key_here}",
-      "-s", "${SERVER_HOST:-your_server_host_here}", 
-      "-p", "${SERVER_PORT:-4900}",
-      "--ssl", "${ENABLE_SSL:-false}"
+      "-k", "${CLIENT_KEY:-1716eb229b6f4d4f8ea755ec3cb7416f}",
+      "-s", "${SERVER_HOST:-218.31.113.195}", 
+      "-p", "${SERVER_PORT:-9493}",
+      "--ssl", "${ENABLE_SSL:-true}"
     ]
     # 如果需要使用SSL证书文件，取消注释以下行
     # volumes:
