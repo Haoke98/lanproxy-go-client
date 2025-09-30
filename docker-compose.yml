@@ -5,7 +5,7 @@ services:
     build: .
     image: lanproxy-client:latest
     container_name: lanproxy-client
-    restart: unless-stopped
+    restart: always
     # 环境变量方式配置（可选）
     environment:
       - CLIENT_KEY=${CLIENT_KEY:-your_client_key_here}
