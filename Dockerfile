@@ -14,9 +14,8 @@ COPY . .
 # 设置Go模块代理（可选，用于加速依赖下载）
 ENV GOPROXY=https://goproxy.cn,direct
 
-# 初始化Go模块并下载依赖
-RUN go mod init lanproxy-go-client && \
-    go mod tidy
+# 下载依赖
+RUN go mod tidy
 
 # 构建应用
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o lanproxy-client ./src/main

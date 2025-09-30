@@ -1,1 +1,5 @@
 .idea
+.env
+*.tar.gz
+*.tar
+build/
